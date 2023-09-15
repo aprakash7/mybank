@@ -1,19 +1,29 @@
 package com.aprakash.web;
 
-import com.aprakash.context.Application;
+import com.aprakash.context.MyBankApplicationConfiguration;
 import com.aprakash.model.Transaction;
 import com.aprakash.services.TransactionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.util.List;
 
 public class MyBankServlet extends HttpServlet {
-    private TransactionService transactionService = Application.transactionService;
-    private ObjectMapper objectMapper = Application.objectMapper;
+    private TransactionService transactionService;
+    private ObjectMapper objectMapper;
+
+    @Override
+    public void init() throws ServletException {
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MyBankApplicationConfiguration.class);
+        this.transactionService = ctx.getBean(TransactionService.class);
+        this.objectMapper = ctx.getBean(ObjectMapper.class);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getRequestURI().equalsIgnoreCase("/transactions")) {

@@ -15,17 +15,20 @@ public class Transaction {
     private String transactionDetails;
     private Integer amount;
 
+    private String slogan;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmZ")
     private ZonedDateTime timestamp;
 
     public Transaction() {
     }
 
-    public Transaction(Integer amount, String transactionDetails, ZonedDateTime timestamp) {
+    public Transaction(Integer amount, String transactionDetails, ZonedDateTime timestamp, String slogan) {
         this.id = UUID.randomUUID().toString();
         this.amount = amount;
         this.transactionDetails = transactionDetails;
         this.timestamp = timestamp;
+        this.slogan = slogan;
     }
 
     public String getId() {
