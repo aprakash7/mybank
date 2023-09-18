@@ -5,7 +5,11 @@
 * Java 21
 * Maven
 * Tomcat
+* Jackson
 * Servlet
+* Spring
+* SpringMVC
+* Hibernate
 
 ### To Boot Up Tomcat on port 8090
 ```
