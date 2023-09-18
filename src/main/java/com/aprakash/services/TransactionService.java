@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 @Component
 public class TransactionService {
@@ -22,9 +23,15 @@ public class TransactionService {
         return transactions;
     }
 
-    public Transaction create(Integer amount, String transactionDetails) {
+    public List<Transaction> findByReceivingUserId(String userId) {
+        return transactions.stream()
+                .filter(tx -> userId.equalsIgnoreCase(tx.getReceivingUser()))
+                .collect(Collectors.toList());
+    }
+
+    public Transaction create(Integer amount, String transactionDetails, String receivingUser) {
         ZonedDateTime timestamp = ZonedDateTime.now();
-        Transaction transaction = new Transaction(amount, transactionDetails, timestamp, bankSlogan);
+        Transaction transaction = new Transaction(amount, transactionDetails, timestamp, bankSlogan, receivingUser);
         transactions.add(transaction);
         return transaction;
     }
