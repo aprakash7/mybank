@@ -1,19 +1,17 @@
-package com.aprakash.dto;
+package com.aprakash.web.forms;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
+import java.math.BigDecimal;
 
-public class TransactionDto {
+public class TransactionForm {
 
     @NotNull
     @Min(1)
-    @Max(10000)
+    @Max(100)
     private Integer amount;
 
     @NotBlank
+    @Size(min = 1, max = 25)
     private String transactionDetails;
 
     @NotBlank
