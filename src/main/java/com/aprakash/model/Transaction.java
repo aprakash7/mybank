@@ -46,7 +46,7 @@ public class Transaction {
         return transactionDetails;
     }
 
-    public void setTransactionDetails() {
+    public void setTransactionDetails(String transactionDetails) {
         this.transactionDetails = transactionDetails;
     }
 
@@ -54,7 +54,7 @@ public class Transaction {
         return amount;
     }
 
-    public void setAmount() {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -64,5 +64,21 @@ public class Transaction {
 
     public void setReceivingUser(String receivingUser) {
         this.receivingUser = receivingUser;
+    }
+
+    public ZonedDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(ZonedDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getSlogan() {
+        return slogan;
+    }
+
+    public void setSlogan(String slogan) {
+        this.slogan = slogan;
     }
 }
